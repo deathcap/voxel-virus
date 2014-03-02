@@ -1,6 +1,6 @@
-function Virus(opts) {
-  if (!(this instanceof Virus)) return new Virus(opts || {});
-  if (opts.THREE) opts = {game:opts};
+function Virus(game, opts) {
+  if (!(this instanceof Virus)) return new Virus(game, opts || {});
+  if (opts === undefined) opts = game;
   this.game      = opts.game;
   this.material  = opts.material  || 0;
   this.rate      = opts.rate      || 3000;
