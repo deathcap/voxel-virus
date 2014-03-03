@@ -1,5 +1,5 @@
 {
-  "name": "voxel-virus",
+  "name": "voxel-virus-example",
   "description": "Spread a virus in voxel.js",
   "version": "0.2.1",
   "homepage": "https://github.com/shama/voxel-virus",
@@ -25,18 +25,15 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "start": "cd example; npm start",
-    "gh-pages": "cd example; npm run-script gh-pages"
+    "start": "./node_modules/.bin/beefy world.js 8080 -- -d",
+    "gh-pages": "browserify world.js -o ../world.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "voxel-engine": "~0.20.0",
     "voxel-player": "~0.1.0",
     "voxel-perlin-terrain": "~1.0.0",
     "toolbar": "0.0.5",
     "beefy": "~1.0.0",
     "browserify": "~3.27.1"
-  },
-  "peerDependencies": {
-    "voxel-engine": ">= 0.17.0"
   }
 }
