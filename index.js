@@ -1,7 +1,7 @@
 function Virus(game, opts) {
   if (!(this instanceof Virus)) return new Virus(game, opts || {});
   if (opts === undefined) opts = game;
-  this.game      = opts.game;
+  this.game      = opts.game      || game;
   this.material  = opts.material  || 0;
   this.rate      = opts.rate      || 3000;
   this.virulence = opts.virulence || 0.5;

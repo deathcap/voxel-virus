@@ -31,8 +31,7 @@ shama.yaw.position.set(0, 15, 0);
 shama.possess();
 
 // create the virus
-var virus = require('../')({
-  game: game,
+var virus = require('../')(game, {
   material: 'redwool',
 });
 game.on('fire', function() {
