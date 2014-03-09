@@ -7,6 +7,7 @@ function Virus(game, opts) {
   if (opts === undefined) opts = game;
   this.game      = opts.game      || game;
   this.material  = opts.material  || 0;
+  this.materialSource = opts.materialSource || 1;
   this.rate      = opts.rate      || 3000;
   this.virulence = opts.virulence || 0.5;
   this.decay     = opts.decay     || 10;
@@ -16,6 +17,10 @@ function Virus(game, opts) {
   if (typeof this.material === 'string') {
     this.material = this.game.materials.find(this.material);
   }
+  if (typeof this.materialSource === 'string') {
+    this.materialSource = this.game.materials.find(this.materialSource);
+  }
+
   if (opts.isWater) 
     toWater(this, this.material);
 
@@ -32,7 +37,7 @@ Virus.prototype.enable = function() {
 
   var self = this;
   this.game.on('setBlock', this.onSetBlock = function(pos, val) {
-    if (val === self.material) {
+    if (val === self.materialSource) {
       self.infect(pos, 0, true);
     }
   });
