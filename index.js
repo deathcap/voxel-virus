@@ -1,3 +1,5 @@
+'use strict';
+
 function Virus(game, opts) {
   if (!(this instanceof Virus)) return new Virus(game, opts || {});
   if (opts === undefined) opts = game;
@@ -12,8 +14,19 @@ function Virus(game, opts) {
   if (typeof this.material === 'string') {
     this.material = this.game.materials.find(this.material);
   }
+
+  this.enable();
 }
 module.exports = Virus;
+
+Virus.prototype.enable = function() {
+  this.game.on('tick', this.onTick = this.tick.bind(this));
+};
+
+Virus.prototype.disable = function() {
+  this.game.removeListener('tick', this.onTick);
+};
+
 
 Virus.prototype.infect = function(block, level) {
   var game = this.game;

@@ -39,7 +39,6 @@ game.on('fire', function() {
   var pos = game.cameraPosition();
   virus.infect(game.raycast(pos, vec, 100).voxel);
 });
-game.on('tick', virus.tick.bind(virus));
 
 var toWater = require('./water');
 
