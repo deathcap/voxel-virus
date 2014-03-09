@@ -18,6 +18,9 @@ function Virus(game, opts) {
   this.enable();
 }
 module.exports = Virus;
+module.exports.pluginInfo = {
+  clientOnly: true // TODO: support server-side (need to lookup material)
+};
 
 Virus.prototype.enable = function() {
   this.game.on('tick', this.onTick = this.tick.bind(this));
