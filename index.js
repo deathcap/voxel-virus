@@ -1,5 +1,7 @@
 'use strict';
 
+var toWater = require('./example/water.js');
+
 function Virus(game, opts) {
   if (!(this instanceof Virus)) return new Virus(game, opts || {});
   if (opts === undefined) opts = game;
@@ -14,28 +16,48 @@ function Virus(game, opts) {
   if (typeof this.material === 'string') {
     this.material = this.game.materials.find(this.material);
   }
+  if (opts.isWater) 
+    toWater(this, this.material);
 
   this.enable();
 }
 module.exports = Virus;
 module.exports.pluginInfo = {
+  loadAfter: ['voxel-fluid'],
   clientOnly: true // TODO: support server-side (need to lookup material)
 };
 
 Virus.prototype.enable = function() {
   this.game.on('tick', this.onTick = this.tick.bind(this));
+
+  var self = this;
+  this.game.on('setBlock', this.onSetBlock = function(pos, val) {
+    if (val === self.material) {
+      self.infect(pos, 0, true);
+    }
+  });
+
+  /*
+  if (this.game.plugins) {
+    var registry = this.game.plugins.get('voxel-registry');
+    var props = registry.getBlockProps('water');
+    if (!props) throw new Error('voxel-registry found but no "water" block registered, voxel-fluid plugin missing?');
+    props.onUse = function(
+  }
+  */
 };
 
 Virus.prototype.disable = function() {
   this.game.removeListener('tick', this.onTick);
+  this.game.removeListener('setBlock', this.onSetBlock);
 };
 
 
-Virus.prototype.infect = function(block, level) {
+Virus.prototype.infect = function(block, level, skipSetBlock) {
   var game = this.game;
   level = level || 0;
   if (level >= this.decay || !block) return;
-  if (this.material !== false) game.setBlock(block, this.material);
+  if (this.material !== false && !skipSetBlock) game.setBlock(block, this.material);
   this.infected.push([this.elapsed + this.rate, block, level]);
 };
 
