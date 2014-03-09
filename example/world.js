@@ -25,8 +25,8 @@ game.voxels.on('missingChunk', function(p) {
 game.paused = false;
 
 // create a player
-var createPlayer = require('voxel-player')(game);
-var shama = createPlayer('textures/shama.png');
+var createPlayer = require('voxel-player');
+var shama = createPlayer(game, {image:'textures/shama.png'});
 shama.yaw.position.set(0, 15, 0);
 shama.possess();
 
