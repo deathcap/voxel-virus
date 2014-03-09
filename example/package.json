@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "voxel-engine": "~0.20.0",
-    "voxel-player": "~0.1.0",
+    "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
     "voxel-perlin-terrain": "~1.0.0",
     "toolbar": "0.0.5",
     "beefy": "~1.0.0",

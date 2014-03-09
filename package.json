@@ -28,14 +28,6 @@
     "start": "cd example; npm start",
     "gh-pages": "cd example; npm run-script gh-pages"
   },
-  "devDependencies": {
-    "voxel-engine": "~0.20.0",
-    "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
-    "voxel-perlin-terrain": "~1.0.0",
-    "toolbar": "0.0.5",
-    "beefy": "~1.0.0",
-    "browserify": "~3.27.1"
-  },
   "peerDependencies": {
     "voxel-engine": ">= 0.17.0"
   }
